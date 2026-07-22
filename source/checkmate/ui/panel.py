@@ -13,4 +13,4 @@ class CHECKMATE_PT_MainPanel(bpy.types.Panel):
     def draw(self, context):
         layout = self.layout
 
-        layout.label(text="Welcome to CheckMate")
+        layout.operator("checkmate.run_scan", icon="PLAY")
