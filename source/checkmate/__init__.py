@@ -1,6 +1,6 @@
 bl_info = {
     "name": "CheckMate",
-    "author": "Muhammed",
+    "author": "AM Studio",
     "version": (0, 1, 0),
     "blender": (4, 0, 0),
     "location": "View3D > Sidebar",
