@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Blender backup files
+*.blend1
+*.blend2
+
+# VS Code
+.vscode/
+
+# Operating System
+Thumbs.db
+.DS_Store
