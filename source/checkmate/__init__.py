@@ -8,13 +8,7 @@ bl_info = {
     "category": "3D View",
 }
 
-
-def register():
-    print("CheckMate Registered")
-
-
-def unregister():
-    print("CheckMate Unregistered")
+from .registration import register, unregister
 
 
 if __name__ == "__main__":
