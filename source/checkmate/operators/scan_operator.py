@@ -1,5 +1,3 @@
-print("Loading scan_operator.py")
-
 import bpy
 
 
