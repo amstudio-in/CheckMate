@@ -1,0 +1,21 @@
+bl_info = {
+    "name": "CheckMate",
+    "author": "Muhammed",
+    "version": (0, 1, 0),
+    "blender": (4, 0, 0),
+    "location": "View3D > Sidebar",
+    "description": "Validate Blender projects before rendering or exporting.",
+    "category": "3D View",
+}
+
+
+def register():
+    print("CheckMate Registered")
+
+
+def unregister():
+    print("CheckMate Unregistered")
+
+
+if __name__ == "__main__":
+    register()
