@@ -1,5 +1,5 @@
 import bpy
-
+from .. import state
 
 class CHECKMATE_PT_MainPanel(bpy.types.Panel):
     """Main CheckMate panel"""
@@ -12,21 +12,52 @@ class CHECKMATE_PT_MainPanel(bpy.types.Panel):
 
     def draw(self, context):
         layout = self.layout
+        layout.label(text="Project Validation Assistant")
+        layout.separator()
 
         box = layout.box()
         box.label(text="Health Score", icon="INFO")
-        box.label(text="--")
+        if state.UIState.is_scanning:
+            box.label(text="Calculating...")
+        else:
+            box.label(text=state.UIState.health_score)
 
         status_box = layout.box()
-        status_box.label(text="Project Status", icon="CHECKMARK")
-        status_box.label(text="Not Scanned")
+        status_box.label(text="Readiness Status", icon="CHECKMARK")
+        if state.UIState.is_scanning:
+            status_box.label(text="Scanning...")
+        else:
+            status_box.label(text=state.UIState.readiness_status)
+
+        issue_box = layout.box()
+        issue_box.label(text="Issue Summary", icon="ERROR")
+        if state.UIState.is_scanning:
+            issue_box.label(text="Analyzing...")
+        else:
+            issue_box.label(text=state.UIState.issue_summary)
 
         layout.separator()
 
-        layout.operator("checkmate.run_scan", icon="PLAY")
+        if state.UIState.is_scanning:
+            row = layout.row()
+            row.enabled = False
+            row.operator(
+                "checkmate.run_scan",
+                text="Scanning...",
+                icon="TIME"
+            )
+        else:
+            layout.operator(
+                "checkmate.run_scan",
+                text="Run Scan",
+                icon="PLAY"
+            )
 
         layout.separator()
 
         results_box = layout.box()
         results_box.label(text="Validation Results", icon="TEXT")
-        results_box.label(text="No scan performed.")
+        if state.UIState.is_scanning:
+            results_box.label(text="Checking project...")
+        else:
+            results_box.label(text=state.UIState.validation_results)
