@@ -19,6 +19,12 @@ class CHECKMATE_PT_MainPanel(bpy.types.Panel):
 
         box.label(text="--")
 
+        status_box = layout.box()
+
+        status_box.label(text="Project Status", icon="CHECKMARK")
+
+        status_box.label(text="Not Scanned")
+
         layout.separator()
 
         layout.operator("checkmate.run_scan", icon="PLAY")
