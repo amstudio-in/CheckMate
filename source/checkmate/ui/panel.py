@@ -13,4 +13,12 @@ class CHECKMATE_PT_MainPanel(bpy.types.Panel):
     def draw(self, context):
         layout = self.layout
 
+        box = layout.box()
+
+        box.label(text="Health Score", icon="INFO")
+
+        box.label(text="--")
+
+        layout.separator()
+
         layout.operator("checkmate.run_scan", icon="PLAY")
