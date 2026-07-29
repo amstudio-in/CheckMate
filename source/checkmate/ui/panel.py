@@ -1,5 +1,6 @@
 import bpy
 from .. import state
+from ..validation.severity import Severity
 
 class CHECKMATE_PT_MainPanel(bpy.types.Panel):
     """Main CheckMate panel"""
@@ -59,5 +60,16 @@ class CHECKMATE_PT_MainPanel(bpy.types.Panel):
         results_box.label(text="Validation Results", icon="TEXT")
         if state.UIState.is_scanning:
             results_box.label(text="Checking project...")
+        elif not state.UIState.scan_completed:
+            results_box.label(text="No scan performed.")
+        elif not state.UIState.validation_results:
+            results_box.label(text="No issues found.")
         else:
-            results_box.label(text=state.UIState.validation_results)
+            for result in state.UIState.validation_results:
+                if result.severity == Severity.ERROR:
+                    icon = "ERROR"
+                elif result.severity == Severity.WARNING:
+                    icon = "QUESTION"
+                else:
+                    icon = "INFO"
+                results_box.label(text=result.title, icon=icon)

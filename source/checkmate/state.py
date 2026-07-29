@@ -5,4 +5,6 @@ class UIState:
     health_score = "--"
     readiness_status = "Not Scanned"
     issue_summary = "Run a scan to view issues."
-    validation_results = "No scan performed."
+
+    scan_completed = False
+    validation_results = []

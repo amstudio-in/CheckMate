@@ -1,5 +1,7 @@
 import bpy
 from .. import state
+from ..engine.validation_engine import ValidationEngine
+
 
 def finish_scan():
     state.UIState.is_scanning = False
@@ -19,6 +21,13 @@ class CHECKMATE_OT_RunScan(bpy.types.Operator):
 
     def execute(self, context):
         state.UIState.is_scanning = True
+
+        engine = ValidationEngine()
+        results = engine.run()
+
+        state.UIState.validation_results = results
+        state.UIState.scan_completed = True
+        
         for window in bpy.context.window_manager.windows:
             for area in window.screen.areas:
                 area.tag_redraw()
