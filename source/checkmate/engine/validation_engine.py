@@ -9,6 +9,10 @@ class ValidationEngine:
         results = []
 
         camera_validator = CameraValidator()
-        results.extend(camera_validator.run())
+
+        try:
+            results.extend(camera_validator.run())
+        except Exception as error:
+            print(f"[CheckMate] CameraValidator failed: {error}")
 
         return results
