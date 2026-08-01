@@ -46,26 +46,44 @@ Improve validators over time.
 
 ---
 
-# Validator Development Roadmap
+# Validation Architecture
 
-## ✅ Current Version (v1)
-
-- ✅ Camera Validator
-- ✅ Light Validator
-- ✅ Material Validator
-- ✅ Texture Validator
-- ✅ Geometry Validator
-- ✅ Animation Validator
+```
+UI
+ ↓
+Operator
+ ↓
+Validation Engine
+ ↓
+Validators
+ ↓
+Validation Results
+ ↓
+UI
+```
 
 ---
 
-## ⏳ Later Versions
+# Validator Development Roadmap
+
+## 🚧 Planned for v1
+
+- ✅ Camera Validator
+- 🚧 Light Validator
+- ✅ Material Validator
+- ✅ Texture Validator
+- ✅ Geometry Validator
+- 🚧 Animation Validator
+
+---
+
+## ⏳ Planned for v2
 
 - ⏳ Render Validator
 - ⏳ Scene Validator
 - ⏳ Collection Validator
-- ⏳ Modifier Validator
 - ⏳ Object Validator
+- ⏳ Modifier Validator
 - ⏳ Performance Validator
 - ⏳ World Validator
 - ⏳ Asset Validator
@@ -74,13 +92,11 @@ Improve validators over time.
 
 ## 🚀 Future Releases
 
-These validators are planned after the first stable public release.
-
 - 🚀 Rigging Validator
 - 🚀 Physics Validator
 - 🚀 Simulation Validator
-- 🚀 Compositor Validator
 - 🚀 Geometry Nodes Validator
+- 🚀 Compositor Validator
 - 🚀 Node Group Validator
 - 🚀 Export Validator
 - 🚀 Pipeline Validator
@@ -100,4 +116,4 @@ Example:
 - Material Validator
 - Texture Validator
 
-Every validator will be designed, reviewed, and implemented individually.
+Every validator will be designed, reviewed, implemented, tested, and documented individually.

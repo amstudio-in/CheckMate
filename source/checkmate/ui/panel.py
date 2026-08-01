@@ -72,4 +72,7 @@ class CHECKMATE_PT_MainPanel(bpy.types.Panel):
                     icon = "QUESTION"
                 else:
                     icon = "INFO"
-                results_box.label(text=result.title, icon=icon)
+                results_box.label(
+                    text=f"{result.title}: {result.message}",
+                    icon=icon
+                )

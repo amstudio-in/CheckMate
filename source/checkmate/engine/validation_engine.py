@@ -1,4 +1,7 @@
 from ..validation.camera_validator import CameraValidator
+from ..validation.material_validator import MaterialValidator
+from ..validation.texture_validator import TextureValidator
+from ..validation.geometry_validator import GeometryValidator
 
 class ValidationEngine:
     """Coordinates all project validation checks."""
@@ -8,11 +11,20 @@ class ValidationEngine:
 
         results = []
 
-        camera_validator = CameraValidator()
+        validators = [
+            CameraValidator(),
+            MaterialValidator(),
+            TextureValidator(),
+            GeometryValidator(),
+        ]
 
-        try:
-            results.extend(camera_validator.run())
-        except Exception as error:
-            print(f"[CheckMate] CameraValidator failed: {error}")
+        for validator in validators:
+            try:
+                results.extend(validator.run())
+            except Exception as error:
+                print(
+                    f"[CheckMate]"
+                    f"{validator.__class__.__name__} failed: {error}"
+                )
 
         return results
