@@ -1,6 +1,6 @@
 # Scoring Engine Tests
 
-- [ ] Perfect Project
+- [✅] Perfect Project
 - [ ] One Warning
 - [ ] Four Warnings
 - [ ] One Error
