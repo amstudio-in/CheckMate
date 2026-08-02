@@ -1,6 +1,7 @@
 import bpy
 from .. import state
 from ..engine.validation_engine import ValidationEngine
+from ..engine.scoring_engine import ScoringEngine
 
 
 def finish_scan():
@@ -25,6 +26,17 @@ class CHECKMATE_OT_RunScan(bpy.types.Operator):
         engine = ValidationEngine()
         results = engine.run()
 
+        score_engine = ScoringEngine()
+        score = score_engine.calculate(results)
+        status = score_engine.get_readiness_status(
+            score,
+            results
+        )
+        summary = score_engine.get_score_summary(results)
+
+        state.UIState.health_score = str(score)
+        state.UIState.readiness_status = status
+        state.UIState.issue_summary = summary
         state.UIState.validation_results = results
         state.UIState.scan_completed = True
         
