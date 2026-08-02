@@ -105,6 +105,27 @@ UI
 
 ---
 
+# Core Validation Rules (v1)
+
+## 🚧 Planned for v1
+- ✅ Missing Texture Detection
+- ✅ Missing Camera Detection
+- 🚧 Output Path Validation
+- 🚧 Missing UV Map Detection
+- 🚧 Unapplied Transform Detection
+
+---
+
+## ⏳ Planned for Later Versions
+
+- ⏳ Unused Material Detection
+- ⏳ Unused Image Detection
+- ⏳ GPU Rendering Configuration Check
+- ⏳ High Subdivision Detection
+- ⏳ Temporary Output Location Detection
+
+---
+
 # Validator Specifications
 
 Each validator will receive its own specification before implementation.
