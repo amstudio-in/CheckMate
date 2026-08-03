@@ -1,9 +1,11 @@
 import bpy
 
 from .scan_operator import CHECKMATE_OT_RunScan
+from .report_operators import CHECKMATE_OT_ToggleReportGroup
 
 classes = (
     CHECKMATE_OT_RunScan,
+    CHECKMATE_OT_ToggleReportGroup,
 )
 
 

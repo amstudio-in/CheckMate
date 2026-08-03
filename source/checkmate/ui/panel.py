@@ -56,23 +56,86 @@ class CHECKMATE_PT_MainPanel(bpy.types.Panel):
 
         layout.separator()
 
-        results_box = layout.box()
-        results_box.label(text="Validation Results", icon="TEXT")
-        if state.UIState.is_scanning:
-            results_box.label(text="Checking project...")
-        elif not state.UIState.scan_completed:
-            results_box.label(text="No scan performed.")
-        elif not state.UIState.validation_results:
-            results_box.label(text="No issues found.")
-        else:
-            for result in state.UIState.validation_results:
-                if result.severity == Severity.ERROR:
-                    icon = "ERROR"
-                elif result.severity == Severity.WARNING:
-                    icon = "QUESTION"
-                else:
-                    icon = "INFO"
+        if (
+            not state.UIState.is_scanning
+            and state.UIState.scan_completed
+        ):
+
+            has_results = any(
+                state.UIState.validation_report.values()
+            )
+
+            if has_results:
+                results_box = layout.box()
                 results_box.label(
-                    text=f"{result.title}: {result.message}",
-                    icon=icon
+                    text="Validation Results",
+                    icon="TEXT"
                 )
+
+                severity_order = [
+                    Severity.ERROR,
+                    Severity.WARNING,
+                    Severity.INFO,
+                ]
+
+                severity_icons = {
+                    Severity.ERROR: "ERROR",
+                    Severity.WARNING: "QUESTION",
+                    Severity.INFO: "INFO",
+                }
+
+                for severity in severity_order:
+
+                    for group in state.UIState.validation_report.get(severity, []):
+
+                        row = results_box.row(align=True)
+
+                        icon = severity_icons[severity]
+
+                        title = group["title"]
+                        if group["count"] == 1:
+                            title = (
+                                f"{group['title']} : "
+                                f"{group['message']}"
+                            )
+                        else:
+                            title = (
+                                f"{group['title']} "
+                                f"({group['count']})"
+                            )
+
+                        row.label(
+                            text=title,
+                            icon=icon,
+                        )
+
+                        if group["expandable"]:
+
+                            expanded = (
+                                group["title"]
+                                in state.UIState.expanded_groups
+                            )
+
+                            op = row.operator(
+                                "checkmate.toggle_report_group",
+                                text="",
+                                emboss=False,
+                                icon=(
+                                    "DOWNARROW_HLT"
+                                    if expanded
+                                    else "PLAY"
+                                ),
+                            )
+
+                            op.group_title = group["title"]
+
+                            if expanded:
+
+                                details_box = results_box.box()
+
+                                for detail in group["details"]:
+
+                                    details_box.label(
+                                        text=detail,
+                                        icon="DOT"
+                                    )

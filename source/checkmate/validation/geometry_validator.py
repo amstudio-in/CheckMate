@@ -38,10 +38,8 @@ class GeometryValidator:
                     ValidationResult(
                         severity=Severity.WARNING,
                         title="Non-Manifold Geometry",
-                        message=(
-                            f"Object '{obj.name}' "
-                            "contains non-manifold geometry."
-                        )
+                        message=f"'{obj.name}'",
+                        details=obj.name,
                     )
                 )
 

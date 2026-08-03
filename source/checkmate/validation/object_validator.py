@@ -31,7 +31,8 @@ class ObjectValidator:
                     ValidationResult(
                         severity=Severity.WARNING,
                         title="Unapplied Rotation",
-                        message=f"Object '{obj.name}' has unapplied rotation."
+                        message=f"'{obj.name}'",
+                        details=obj.name,
                     )
                 )
 
@@ -54,7 +55,8 @@ class ObjectValidator:
                     ValidationResult(
                         severity=Severity.WARNING,
                         title="Unapplied Scale",
-                        message=f"Object '{obj.name}' has unapplied scale."
+                        message=f"'{obj.name}'",
+                        details=obj.name,
                     )
                 )
 

@@ -27,7 +27,8 @@ class MaterialValidator:
                     ValidationResult(
                         severity=Severity.WARNING,
                         title="Object Has No Material",
-                        message=f"Object '{obj.name}' has no material assigned."
+                        message=f"'{obj.name}'",
+                        details=obj.name,
                     )
                 )
 
@@ -49,10 +50,8 @@ class MaterialValidator:
                         ValidationResult(
                             severity=Severity.WARNING,
                             title="Empty Material Slot",
-                            message=(
-                                f"Object '{obj.name}' contains "
-                                "an empty material slot."
-                            )
+                            message=f"'{obj.name}'",
+                            details=obj.name,
                         )
                     )
 
