@@ -47,3 +47,57 @@ class ReportEngine:
         report[Severity.INFO].sort(key=lambda item: item["title"])
 
         return report
+
+    def build_recommendations(self, validation_results):
+        """Builds grouped recommendation reports."""
+
+        grouped = defaultdict(list)
+
+        for result in validation_results:
+
+            if not result.recommendation:
+                continue
+
+            grouped[result.recommendation].append(result)
+
+        recommendations = []
+
+        for recommendation, results in grouped.items():
+
+            count = len(results)
+            text = recommendation
+
+            if count > 1:
+                text = f"{recommendation} to {count} objects."
+
+            recommendations.append(
+                {
+                    "title": results[0].title,
+                    "severity": results[0].severity,
+                    "text": text,
+                    "recommendation": recommendation,
+                    "count": count,
+                    "expandable": count > 1,
+                    "expanded": False,
+                    "details": [
+                        result.details
+                        for result in results
+                        if result.details
+                    ],
+                }
+            )
+
+        severity_order = {
+            Severity.ERROR: 0,
+            Severity.WARNING: 1,
+            Severity.INFO: 2,
+        }
+
+        recommendations.sort(
+            key=lambda item: (
+                severity_order[item["severity"]],
+                item["title"],
+            )
+        )
+
+        return recommendations

@@ -40,6 +40,7 @@ class GeometryValidator:
                         title="Non-Manifold Geometry",
                         message=f"'{obj.name}'",
                         details=obj.name,
+                        recommendation="Fix non-manifold geometry",
                     )
                 )
 

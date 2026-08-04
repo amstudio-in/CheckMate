@@ -22,7 +22,8 @@ class RenderValidator:
                 ValidationResult(
                     severity=Severity.WARNING,
                     title="Output Path Not Configured",
-                    message=("Render output path is not configured.")
+                    message=("Render output path is not configured."),
+                    recommendation="Set a render output path.",
                 )
             )
 

@@ -38,7 +38,8 @@ class TextureValidator:
                     ValidationResult(
                         severity=Severity.ERROR,
                         title="Missing Texture File",
-                        message=f"Texture '{filename}' could not be found."
+                        message=f"Texture '{filename}' could not be found.",
+                        recommendation="Relink missing textures",
                     )
                 )
 

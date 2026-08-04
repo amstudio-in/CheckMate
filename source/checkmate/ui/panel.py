@@ -139,3 +139,55 @@ class CHECKMATE_PT_MainPanel(bpy.types.Panel):
                                         text=detail,
                                         icon="DOT"
                                     )
+
+        if (
+            not state.UIState.is_scanning
+            and state.UIState.scan_completed
+            and state.UIState.recommendation_report
+        ):
+
+            recommendations_box = layout.box()
+            recommendations_box.label(
+                text="Recommendations",
+                icon="LIGHT"
+            )
+
+            for recommendation in state.UIState.recommendation_report:
+
+                row = recommendations_box.row(align=True)
+
+                if recommendation["expandable"]:
+
+                    expanded = (
+                        recommendation["recommendation"]
+                        in state.UIState.expanded_groups
+                    )
+
+                    op = row.operator(
+                        "checkmate.toggle_report_group",
+                        text="",
+                        emboss=False,
+                        icon=(
+                            "DOWNARROW_HLT"
+                            if expanded
+                            else "PLAY"
+                        ),
+                    )
+
+                    op.group_title = recommendation["recommendation"]
+
+                row.label(
+                    text=recommendation["text"],
+                    icon="DOT",
+                )
+
+                if recommendation["expandable"] and expanded:
+
+                    details_box = recommendations_box.box()
+
+                    for detail in recommendation["details"]:
+
+                        details_box.label(
+                            text=detail,
+                            icon="DOT"
+                        )

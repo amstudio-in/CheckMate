@@ -9,4 +9,6 @@ class UIState:
     scan_completed = False
     validation_results = []
     validation_report = {}
+    recommendation_report = []
+    
     expanded_groups = set()

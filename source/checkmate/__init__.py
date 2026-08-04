@@ -1,7 +1,7 @@
 bl_info = {
     "name": "CheckMate",
     "author": "AM Studio",
-    "version": (0, 3, 0),
+    "version": (0, 7, 0),
     "blender": (4, 0, 0),
     "location": "View3D > Sidebar",
     "description": "Validate Blender projects before rendering or exporting.",

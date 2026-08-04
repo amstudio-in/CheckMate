@@ -28,7 +28,8 @@ class CHECKMATE_OT_RunScan(bpy.types.Operator):
         results = engine.run()
 
         report_engine = ReportEngine()
-        report = report_engine.build(results)
+        validation_report = report_engine.build(results)
+        recommendation_report = report_engine.build_recommendations(results)
 
         score_engine = ScoringEngine()
         score = score_engine.calculate(results)
@@ -42,7 +43,8 @@ class CHECKMATE_OT_RunScan(bpy.types.Operator):
         state.UIState.readiness_status = status
         state.UIState.issue_summary = summary
         state.UIState.validation_results = results
-        state.UIState.validation_report = report
+        state.UIState.validation_report = validation_report
+        state.UIState.recommendation_report = recommendation_report
         state.UIState.scan_completed = True
         
         for window in bpy.context.window_manager.windows:

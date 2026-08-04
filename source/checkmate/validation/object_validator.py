@@ -33,6 +33,7 @@ class ObjectValidator:
                         title="Unapplied Rotation",
                         message=f"'{obj.name}'",
                         details=obj.name,
+                        recommendation="Apply object rotation",
                     )
                 )
 
@@ -57,6 +58,7 @@ class ObjectValidator:
                         title="Unapplied Scale",
                         message=f"'{obj.name}'",
                         details=obj.name,
+                        recommendation="Apply object scale",
                     )
                 )
 

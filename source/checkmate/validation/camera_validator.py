@@ -20,7 +20,8 @@ class CameraValidator:
                 ValidationResult(
                     severity=Severity.ERROR,
                     title="Missing Active Camera",
-                    message="No active camera is assigned to the scene."
+                    message="No active camera is assigned to the scene.",
+                    recommendation="Add an active camera before rendering.",
                 )
             )
 

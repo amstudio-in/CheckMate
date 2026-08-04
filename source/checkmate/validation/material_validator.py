@@ -52,6 +52,7 @@ class MaterialValidator:
                             title="Empty Material Slot",
                             message=f"'{obj.name}'",
                             details=obj.name,
+                            recommendation="Assign materials",
                         )
                     )
 
