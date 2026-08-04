@@ -66,11 +66,11 @@ class CHECKMATE_PT_MainPanel(bpy.types.Panel):
             )
 
             if has_results:
-                results_box = layout.box()
-                results_box.label(
+                layout.label(
                     text="Validation Results",
                     icon="TEXT"
                 )
+                results_box = layout.box()
 
                 severity_order = [
                     Severity.ERROR,
@@ -103,11 +103,7 @@ class CHECKMATE_PT_MainPanel(bpy.types.Panel):
                                 f"{group['title']} "
                                 f"({group['count']})"
                             )
-
-                        row.label(
-                            text=title,
-                            icon=icon,
-                        )
+                        expanded = False
 
                         if group["expandable"]:
 
@@ -129,16 +125,21 @@ class CHECKMATE_PT_MainPanel(bpy.types.Panel):
 
                             op.group_title = group["title"]
 
-                            if expanded:
+                        row.label(
+                            text=title,
+                            icon=icon,
+                        )
 
-                                details_box = results_box.box()
+                        if expanded:
 
-                                for detail in group["details"]:
+                            details_box = results_box.box()
 
-                                    details_box.label(
-                                        text=detail,
-                                        icon="DOT"
-                                    )
+                            for detail in group["details"]:
+
+                                details_box.label(
+                                    text=detail,
+                                    icon="DOT"
+                                )
 
         if (
             not state.UIState.is_scanning
@@ -146,11 +147,11 @@ class CHECKMATE_PT_MainPanel(bpy.types.Panel):
             and state.UIState.recommendation_report
         ):
 
-            recommendations_box = layout.box()
-            recommendations_box.label(
+            layout.label(
                 text="Recommendations",
                 icon="LIGHT"
             )
+            recommendations_box = layout.box()
 
             for recommendation in state.UIState.recommendation_report:
 

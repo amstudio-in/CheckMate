@@ -110,9 +110,9 @@ UI
 ## 🚧 Planned for v1
 - ✅ Missing Texture Detection
 - ✅ Missing Camera Detection
-- 🚧 Output Path Validation
+- ✅ Output Path Validation
 - 🚧 Missing UV Map Detection
-- 🚧 Unapplied Transform Detection
+- ✅ Unapplied Transform Detection
 
 ---
 

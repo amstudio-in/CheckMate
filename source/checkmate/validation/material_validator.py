@@ -29,6 +29,7 @@ class MaterialValidator:
                         title="Object Has No Material",
                         message=f"'{obj.name}'",
                         details=obj.name,
+                        recommendation="Assign materials",
                     )
                 )
 
@@ -52,7 +53,7 @@ class MaterialValidator:
                             title="Empty Material Slot",
                             message=f"'{obj.name}'",
                             details=obj.name,
-                            recommendation="Assign materials",
+                            recommendation="Assign material Slot",
                         )
                     )
 
