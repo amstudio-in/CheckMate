@@ -23,14 +23,17 @@ class GeometryValidator:
                 continue
 
             bm = bmesh.new()
-            bm.from_mesh(obj.data)
 
-            has_non_manifold = any(
-                not edge.is_manifold
-                for edge in bm.edges
-            )
+            try:
+                bm.from_mesh(obj.data)
 
-            bm.free()
+                has_non_manifold = any(
+                    not edge.is_manifold
+                    for edge in bm.edges
+                )
+
+            finally:
+                bm.free()
 
             if has_non_manifold:
 

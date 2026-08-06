@@ -15,7 +15,8 @@ class RenderValidator:
     def _check_output_path(self):
         results = []
 
-        output_path = bpy.context.scene.render.filepath
+        scene = bpy.context.scene
+        output_path = scene.render.filepath
 
         if output_path in {"", "//"}:
             results.append(

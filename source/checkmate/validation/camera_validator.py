@@ -15,7 +15,7 @@ class CameraValidator:
     def _check_active_camera(self, scene):
         results = []
 
-        if bpy.context.scene.camera is None:
+        if scene.camera is None:
             results.append(
                 ValidationResult(
                     severity=Severity.ERROR,

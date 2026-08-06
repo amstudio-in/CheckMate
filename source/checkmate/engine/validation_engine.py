@@ -27,7 +27,7 @@ class ValidationEngine:
                 results.extend(validator.run())
             except Exception as error:
                 print(
-                    f"[CheckMate]"
+                    f"[CheckMate] "
                     f"{validator.__class__.__name__} failed: {error}"
                 )
 

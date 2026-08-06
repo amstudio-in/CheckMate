@@ -4,14 +4,14 @@ from ..engine.validation_engine import ValidationEngine
 from ..engine.scoring_engine import ScoringEngine
 from ..engine.report_engine import ReportEngine
 
-
-def finish_scan():
-    state.UIState.is_scanning = False
-    
+def redraw_ui():
     for window in bpy.context.window_manager.windows:
         for area in window.screen.areas:
             area.tag_redraw()
-    
+            
+def finish_scan():
+    state.UIState.is_scanning = False
+    redraw_ui()
     return None
 
 class CHECKMATE_OT_RunScan(bpy.types.Operator):
@@ -47,9 +47,7 @@ class CHECKMATE_OT_RunScan(bpy.types.Operator):
         state.UIState.recommendation_report = recommendation_report
         state.UIState.scan_completed = True
         
-        for window in bpy.context.window_manager.windows:
-            for area in window.screen.areas:
-                area.tag_redraw()
+        redraw_ui()
 
         bpy.app.timers.register(finish_scan, first_interval=2.0)
         self.report({'INFO'}, "Scan started.")

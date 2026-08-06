@@ -21,7 +21,7 @@ class MaterialValidator:
             if obj.type != "MESH":
                 continue
 
-            if len(obj.material_slots) == 0:
+            if not obj.material_slots:
 
                 results.append(
                     ValidationResult(
@@ -53,7 +53,7 @@ class MaterialValidator:
                             title="Empty Material Slot",
                             message=f"'{obj.name}'",
                             details=obj.name,
-                            recommendation="Assign material Slot",
+                            recommendation="Assign material to the empty slot",
                         )
                     )
 

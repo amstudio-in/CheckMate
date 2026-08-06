@@ -16,20 +16,28 @@ class CHECKMATE_PT_MainPanel(bpy.types.Panel):
         layout.label(text="Project Validation Assistant")
         layout.separator()
 
-        box = layout.box()
-        box.label(text="Health Score", icon="INFO")
+        section = layout.box()
+        section.label(text="Health Score",icon="INFO",)
+        row = section.row()
+        split = row.split(factor=0.20)
+        split.label(text="Score:")
+        value_box = split.box()
         if state.UIState.is_scanning:
-            box.label(text="Calculating...")
+            value_box.label(text="Calculating...")
         else:
-            box.label(text=state.UIState.health_score)
+            value_box.label(text=state.UIState.health_score)
 
-        status_box = layout.box()
-        status_box.label(text="Readiness Status", icon="CHECKMARK")
+        section = layout.box()
+        section.label(text="Readiness Status", icon="CHECKMARK",)
+        row = section.row()
+        split = row.split(factor=0.20)
+        split.label(text="Status:")
+        status_box = split.box()
         if state.UIState.is_scanning:
             status_box.label(text="Scanning...")
         else:
             status_box.label(text=state.UIState.readiness_status)
-
+        
         issue_box = layout.box()
         issue_box.label(text="Issue Summary", icon="ERROR")
         if state.UIState.is_scanning:
@@ -67,7 +75,7 @@ class CHECKMATE_PT_MainPanel(bpy.types.Panel):
 
             if has_results:
                 layout.label(
-                    text="Validation Results",
+                    text="Validation Results:",
                     icon="TEXT"
                 )
                 results_box = layout.box()
@@ -148,7 +156,7 @@ class CHECKMATE_PT_MainPanel(bpy.types.Panel):
         ):
 
             layout.label(
-                text="Recommendations",
+                text="Recommendations:",
                 icon="LIGHT"
             )
             recommendations_box = layout.box()

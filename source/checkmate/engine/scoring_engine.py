@@ -69,5 +69,5 @@ class ScoringEngine:
         return (
             f"{errors} Error(s) • "
             f"{warnings} Warning(s) • "
-            f"{infos} Info"
+            f"{infos} Info(s)"
         )
