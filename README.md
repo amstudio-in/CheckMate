@@ -1,8 +1,8 @@
 # CheckMate
 
-A professional Blender add-on for validating Blender projects before rendering, exporting, or delivery.
+A Blender add-on for validating Blender projects before rendering, exporting, or delivery.
 
-> 🚧 CheckMate is currently under active development.
+CheckMate scans the current Blender project, identifies common issues, calculates a project health score, and provides recommendations to help users review their project before the final render or export.
 
 ---
 
@@ -10,64 +10,125 @@ A professional Blender add-on for validating Blender projects before rendering, 
 
 CheckMate is designed to help Blender artists identify common project issues before rendering, exporting, or sharing their work.
 
-The goal is to provide a fast, reliable, and easy-to-understand project validation system that improves workflow quality and reduces avoidable mistakes.
+It provides a simple validation workflow directly inside Blender, with results organized by severity:
+
+- **ERROR** — Important issues that should be addressed.
+- **WARNING** — Potential issues that should be reviewed.
+- **INFO** — Useful project information that does not affect the health score.
+
+CheckMate is designed to complement normal Blender workflows rather than enforce a specific way of working.
 
 ---
 
-## Planned Features
+## Features
+
+### Project Health
 
 - Project Health Score
 - Project Readiness Status
-- Missing Texture Detection
-- Missing Camera Detection
-- Output Path Validation
-- Duplicate Material Detection
-- Unused Material Detection
-- Unused Image Detection
-- Unapplied Transform Detection
-- Missing UV Map Detection
-- Empty Collection Detection
-- GPU Rendering Configuration Check
-- High Subdivision Detection
+- Issue Summary
 
-Additional validation modules and workflow improvements are planned for future releases.
+### Validation
+
+#### Errors
+
+- Missing Active Camera
+- Missing Texture File
+
+#### Warnings
+
+- Object Has No Material
+- Empty Material Slot
+- Non-Manifold Geometry
+- Output Path Not Configured
+- Unapplied Rotation
+- Unapplied Scale
+
+#### Information
+
+- Unused Material
+- Unused Image
+
+### Recommendations
+
+CheckMate provides recommendations for issues that can be addressed and groups repeated recommendations when multiple objects are affected.
+
+### Validation Results
+
+- Severity-based validation results
+- Grouped results
+- Expandable result details
+- Expandable recommendations
+
+---
+
+## Requirements
+
+- Blender 4.0 or newer
+
+---
+
+## Installation
+
+See [INSTALLATION.md](INSTALLATION.md) for installation instructions.
+
+---
+
+## User Guide
+
+See [USER_GUIDE.md](USER_GUIDE.md) for information about using CheckMate and understanding its validation results.
+
+---
+
+## Usage
+
+After installing and enabling CheckMate:
+
+1. Open a Blender project.
+2. Open the **3D Viewport**.
+3. Open the Sidebar by pressing `N` if it is hidden.
+4. Select the **CheckMate** tab.
+5. Click **Run Scan**.
+6. Review the Health Score and Readiness Status.
+7. Review the Validation Results.
+8. Expand grouped results to view additional details.
+9. Review the Recommendations and address issues where appropriate.
+
+---
+
+## Version
+
+**CheckMate v1.0.0**
 
 ---
 
 ## Project Status
 
-Current Version: **0.1.0**
+CheckMate Version 1 is the first release of the project.
 
-Current Stage:
+The initial release focuses on providing a reliable foundation for Blender project validation with a simple and understandable workflow.
 
-- Project Planning ✅
-- Product Specification ✅
-- Technical Design ✅
-- Development Roadmap ✅
-- Development Started ✅
-
-The project is currently entering the implementation phase.
+Future releases may introduce additional validation rules and workflow improvements based on user needs and testing.
 
 ---
 
 ## Development
 
-The project follows a modular architecture designed for scalability, maintainability, and future expansion.
+CheckMate follows a modular architecture designed for maintainability and future expansion.
 
-Development workflow:
+The project was developed through an iterative workflow:
 
 1. Design
 2. Implement
 3. Test
-4. Commit
-5. Push
-6. Repeat
+4. Optimize
+5. Release
 
 ---
 
 ## Repository
 
-This repository contains the complete source code and documentation for CheckMate.
+This repository contains the source code and documentation for CheckMate.
 
 ---
 

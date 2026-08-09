@@ -10,6 +10,7 @@ class TextureValidator:
         results = []
 
         results.extend(self._check_missing_texture_files())
+        results.extend(self._check_unused_images())
 
         return results
 
@@ -42,5 +43,30 @@ class TextureValidator:
                         recommendation="Relink missing textures",
                     )
                 )
+
+        return results
+
+    def _check_unused_images(self):
+        results = []
+
+        for image in bpy.data.images:
+
+            if image.source != "FILE":
+                continue
+
+            if image.users > 0:
+                continue
+
+            if image.use_fake_user:
+                continue
+
+            results.append(
+                ValidationResult(
+                    severity=Severity.INFO,
+                    title="Unused Image",
+                    message=f"'{image.name}'",
+                    details=image.name,
+                )
+            )
 
         return results

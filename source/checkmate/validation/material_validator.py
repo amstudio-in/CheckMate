@@ -10,6 +10,7 @@ class MaterialValidator:
 
         results.extend(self._check_missing_materials())
         results.extend(self._check_empty_material_slots())
+        results.extend(self._check_unused_materials())
 
         return results
 
@@ -56,5 +57,30 @@ class MaterialValidator:
                             recommendation="Assign material to the empty slot",
                         )
                     )
+
+        return results
+
+    def _check_unused_materials(self):
+        results = []
+
+        for material in bpy.data.materials:
+
+            if material.users > 0:
+                continue
+
+            if material.use_fake_user:
+                continue
+
+            if material.is_grease_pencil:
+                continue
+
+            results.append(
+                ValidationResult(
+                    severity=Severity.INFO,
+                    title="Unused Material",
+                    message=f"'{material.name}'",
+                    details=material.name,
+                )
+            )
 
         return results
